@@ -1,0 +1,42 @@
+[
+    {
+        "id": "taskly",
+        "title": "Taskly — Offline-First Task App",
+        "short": "Minimal task manager with offline sync and conflict resolution",
+        "stack": ["react", "javascript", "indexeddb"],
+        "demo": "https://example.com/taskly",
+        "repo": "https://github.com/username/taskly",
+        "screenshot": "assets/project-thumbs/placeholder.svg",
+        "metrics": "Reduced load time by 40%; 1,000+ users"
+    },
+    {
+        "id": "ecommerce",
+        "title": "ShopFlow — E-Commerce Platform",
+        "short": "Full-featured online store with payment integration and inventory management",
+        "stack": ["react", "node", "mongodb", "javascript"],
+        "demo": "https://example.com/shopflow",
+        "repo": "https://github.com/username/shopflow",
+        "screenshot": "assets/project-thumbs/placeholder.svg",
+        "metrics": "Processing $50K+ monthly transactions"
+    },
+    {
+        "id": "weather",
+        "title": "Weather Dashboard",
+        "short": "Real-time weather application with beautiful visualizations and forecasts",
+        "stack": ["javascript", "html", "css"],
+        "demo": "https://example.com/weather",
+        "repo": "https://github.com/username/weather",
+        "screenshot": "assets/project-thumbs/placeholder.svg",
+        "metrics": "5K+ daily active users"
+    },
+    {
+        "id": "api-hub",
+        "title": "API Hub — Developer Portal",
+        "short": "Centralized API documentation and testing platform for development teams",
+        "stack": ["python", "node", "react"],
+        "demo": "https://example.com/apihub",
+        "repo": "https://github.com/username/apihub",
+        "screenshot": "assets/project-thumbs/placeholder.svg",
+        "metrics": "Serving 200+ API endpoints"
+    }
+]
