@@ -1,6 +1,6 @@
 /**
  * Portfolio Website - Main JavaScript
- * Handles: Theme toggle, mobile menu, project filtering, search, contact form
+ * Handles: Theme toggle, mobile menu, project filtering, search, contact form, scroll animations
  */
 
 // ============================================
@@ -70,11 +70,34 @@ function closeMobileMenu() {
 }
 
 // ============================================
+// SCROLL ANIMATIONS
+// ============================================
+function initScrollAnimations() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+}
+
+// ============================================
 // PROJECT RENDERING
 // ============================================
 function renderProjectCard(project) {
     return `
-        <article class="project-card" data-id="${project.id}" data-stack="${project.stack.join(' ')}">
+        <article class="project-card animate-on-scroll" data-id="${project.id}" data-stack="${project.stack.join(' ')}">
             <div class="project-thumbnail">
                 <img src="${project.screenshot}" alt="${project.title} screenshot" loading="lazy">
             </div>
@@ -117,6 +140,21 @@ function renderProjects(projects) {
     } else {
         DOM.projectsGrid.innerHTML = filtered.map(renderProjectCard).join('');
         DOM.noResults.hidden = true;
+
+        // Trigger animations for new elements with a stagger
+        const newCards = DOM.projectsGrid.querySelectorAll('.project-card');
+
+        // Use intersection observer for new cards as well, or just force animate
+        // For simplicity, let's observe them if we want scroll animation,
+        // OR simply animate them in since they just appeared.
+        // Let's force animate them with stagger for better UX on filter.
+        newCards.forEach((card, index) => {
+            // Remove animate-on-scroll class if we are manually animating to avoid conflict?
+            // Or just add is-visible.
+            setTimeout(() => {
+                card.classList.add('is-visible');
+            }, index * 100);
+        });
     }
 }
 
@@ -275,6 +313,7 @@ async function loadProjects() {
 function init() {
     initTheme();
     initEventListeners();
+    initScrollAnimations(); // Initialize scroll animations
     loadProjects();
 }
 
